@@ -79,7 +79,7 @@ lhe_fragment = '''import FWCore.ParameterSet.Config as cms
 externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
     args = cms.vstring('__GRIDPACK__'),
     nEvents = cms.untracked.uint32(5000),
-    generateConcurrently = cms.untracked.bool(True), 
+    generateConcurrently = cms.untracked.bool(False), 
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
@@ -138,16 +138,16 @@ for mass_point in mass_points:
 # Fill request information for 2017 and 2018
 request_information = {}
 #for year in [2016,2017,2018]:
-for year in [2017,2018]:
-#for year in [2016]:
+#for year in [2017,2018]:
+for year in [2016]:
     request_information[year] = {}
     for mass_point in mass_points:
         gridpack_path = gridpack_locs[mass_point]
         dataset_name = datasetnames[mass_point]
         request_information[year][mass_point] = {
             'gridpack' : gridpack_path,
-            #'Events' : 150000, # for 2016, as 0.3M events for each mass point 
-            'Events' : 300000, # 0.3M events for each mass point 
+            'Events' : 150000, # for 2016, as 0.3M events for each mass point 
+            #'Events' : 300000, # 0.3M events for each mass point 
             'Filter efficiency' :     0.043115 , # random value for now, check later
             'Match efficiency' : 1.0, # random value for now, check later
             #'proc_card_link' : proc_card_link,
